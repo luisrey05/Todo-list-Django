@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        body{
+            background-color: #638CB8;
+        }
+
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input::placeholder{
+            color: #d3d3d3;
+        }
+        .submit{
+            background-color: #6BA3E8;
+        }
+        .center-
+    </style>
+</head>
+<body>
+    <h1>TO DO</h1>
+    <form method="POST" action="/">
+        {% csrf_token %}
+        <label>Add new Item</label>
+        {{form.title}}
+
+        <input type="submit" name="Create Task">
+    </form>
+    <p>Items</p>
+    {% for task in tasks %}
+
+    <div>
+
+        <a href="{% url 'update_task' task.id %}">Update</a>
+        <a href="{% url 'delete' task.id %}">Delete</a>
+        {% if task.complete == True %}
+        <strike>{{task}}</strike>
+        {% else %}
+        <span>{{task}}</span>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+
+</body>
+</html>
